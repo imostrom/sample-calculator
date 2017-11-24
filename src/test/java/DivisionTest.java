@@ -67,13 +67,28 @@ public class DivisionTest {
 	public void testDivideZeros() {
 		double firstNumber = 0;
 		double secondNumber = 0;
-		double result = 0;
+		double result = -0.123456;
 
-		for (int i = 0; i < 200; i++) {
+	
 			result = firstNumber / secondNumber;
 
 			LOG.info("Testing the divide method with zeros: " + firstNumber + " and " + secondNumber);
 			assertEquals(Math.round(calculator.divide(firstNumber, secondNumber)), Math.round(result), 1);
+			
+			for (int i = 0; i < 200; i++) {
+				firstNumber = 0;
+				secondNumber = Double.valueOf(df.format(random.nextDouble() * (10)));
+				result = firstNumber / secondNumber;
+
+				LOG.info("Testing the divide method with zeros: " + firstNumber + " and " + secondNumber);
+				assertEquals(Math.round(calculator.divide(firstNumber, secondNumber)), Math.round(result), 1);
+
+				firstNumber = Double.valueOf(df.format(random.nextDouble() * (10)));
+				secondNumber = 0;
+				result = firstNumber / secondNumber;
+
+				LOG.info("Testing the divide method with zeros: " + firstNumber + " and " + secondNumber);
+				assertEquals(Math.round(calculator.divide(firstNumber, secondNumber)), Math.round(result), 1);
 		}
 	}
 
